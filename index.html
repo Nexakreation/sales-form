@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Registration Form</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-header">
+        <h1><i class="fas fa-user-plus"></i> Customer Registration</h1>
+        <p class="subtitle">Sales Executive Portal</p>
+      </div>
+      <form id="registrationForm">
+        <div class="form-sections">
+          <div class="form-section">
+            <h2><i class="fas fa-user"></i> Personal Information</h2>
+            <div class="form-group">
+              <label for="fullName">Full Name *</label>
+              <div class="input-with-icon">
+                <i class="fas fa-user"></i>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  required
+                  placeholder="Enter full name"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <div class="input-with-icon">
+                <i class="fas fa-envelope"></i>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="Enter email address"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <div class="phone-input-group">
+                <div class="input-with-icon">
+                  <i class="fas fa-phone"></i>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    pattern="[0-9]{10}"
+                    required
+                    placeholder="10-digit phone number"
+                  />
+                </div>
+                <button
+                  type="button"
+                  id="autoFillBtn"
+                  class="btn btn-secondary"
+                >
+                  <i class="fas fa-magic"></i> Auto Fill
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <div class="input-with-icon">
+                <i class="fas fa-venus-mars"></i>
+                <select id="gender" name="gender">
+                  <option value="" disabled selected>Select gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="dob">Date of Birth *</label>
+              <div class="input-with-icon">
+                <i class="fas fa-calendar"></i>
+                <input type="date" id="dob" name="dob" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h2><i class="fas fa-lock"></i> Location & Security</h2>
+            <div class="form-group">
+              <label for="address">Address *</label>
+              <div class="input-with-icon">
+                <i class="fas fa-map-marker-alt"></i>
+                <textarea
+                  id="address"
+                  name="address"
+                  required
+                  placeholder="Enter complete address"
+                ></textarea>
+              </div>
+              <div id="charCount">Characters: 0</div>
+            </div>
+
+            <div class="form-group password-container">
+              <label for="password">Password *</label>
+              <div class="password-input-container">
+                <div class="input-with-icon">
+                  <i class="fas fa-key"></i>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    minlength="6"
+                    required
+                    placeholder="Minimum 6 characters"
+                  />
+                </div>
+                <button
+                  type="button"
+                  class="toggle-password"
+                  data-target="password"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <div class="password-strength-container">
+                <div class="password-strength"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password *</label>
+              <div class="password-input-container">
+                <div class="input-with-icon">
+                  <i class="fas fa-key"></i>
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    minlength="6"
+                    required
+                    placeholder="Re-enter password"
+                  />
+                </div>
+                <button
+                  type="button"
+                  class="toggle-password"
+                  data-target="confirmPassword"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="location-section">
+              <button type="button" id="getLocation" class="location-btn">
+                <i class="fas fa-map-marker-alt"></i> Get Current Location
+              </button>
+              <div class="coordinates">
+                <div class="form-group">
+                  <label for="latitude">Latitude</label>
+                  <div class="input-with-icon">
+                    <i class="fas fa-location-arrow"></i>
+                    <input type="text" id="latitude" name="latitude" readonly />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="longitude">Longitude</label>
+                  <div class="input-with-icon">
+                    <i class="fas fa-location-arrow"></i>
+                    <input type="text" id="longitude" name="longitude" readonly />
+                  </div>
+                </div>
+              </div>
+              <div class="map-containers">
+                <!-- remove the map which one you don't want to use -->
+                <div id="map"></div>
+                <div id="googleMap"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn">
+          <i class="fas fa-check-circle"></i> Complete Registration
+        </button>
+      </form>
+    </div>
+    
+    <!-- map APIs -->
+
+    <!-- google map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+    <!-- openStreetMap -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
