@@ -2,7 +2,7 @@
 function doPost(e) {
   try {
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    const data = e.parameter; // Use e.parameter instead of parsing JSON
+    const data = e.parameter; 
 
     sheet.appendRow([
       data.Timestamp,
