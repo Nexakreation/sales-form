@@ -144,7 +144,7 @@ npm start
 ```
 7. **start apache and mysql in your XAMPP**
 
-8. **Access the application through your browser at http://localhost:3000/PROJECT_NAME**
+8. **Access the application through your browser at http://localhost/PROJECT_NAME**
 
 ## Technical Requirements
 
