@@ -98,7 +98,7 @@ DB_NAME=your_database
    - select type > web app
    - set who can access to anyone and deploy 
    - copy the web url 
-   - paste it in the script.js line:283 look for 
+   - paste it in the script.js line:312 look for 
    ```
    const scriptURL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
    ```
