@@ -140,7 +140,7 @@ DB_NAME=your_database
 6. **Start the server:**
 
 ```bash
-npm start
+node server.js
 ```
 7. **start apache and mysql in your XAMPP**
 
