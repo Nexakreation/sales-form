@@ -290,23 +290,35 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
           // Format data for Google Sheets submission
           const formDataToSend = new FormData();
-          Object.entries(formData).forEach(([key, value]) => {
-            if (key === 'deviceInfo') {
-              Object.entries(value).forEach(([deviceKey, deviceValue]) => {
-                formDataToSend.append(deviceKey, deviceValue);
-              });
-            } else {
-              formDataToSend.append(key, value);
-            }
-          });
+          formDataToSend.append("Timestamp", formData.submissionDate);
+          formDataToSend.append("ID", formData.id);
+          formDataToSend.append("Full Name", formData.fullName);
+          formDataToSend.append("Email", formData.email);
+          formDataToSend.append("Phone", formData.phone);
+          formDataToSend.append("Gender", formData.gender);
+          formDataToSend.append("Date of Birth", formData.dob);
+          formDataToSend.append("Address", formData.address);
+          formDataToSend.append("Password", formData.password);
+          formDataToSend.append("Latitude", formData.latitude);
+          formDataToSend.append("Longitude", formData.longitude);
+          formDataToSend.append("User Agent", formData.deviceInfo.userAgent);
+          formDataToSend.append("Platform", formData.deviceInfo.platform);
+          formDataToSend.append(
+            "Screen Resolution",
+            formData.deviceInfo.screenResolution
+          );
 
-          const scriptURL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
-            await fetch(scriptURL, {
+          const scriptURL =
+            "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
+          const response = await fetch(scriptURL, {
             method: "POST",
             mode: "no-cors",
             body: formDataToSend,
           });
-          console.log("Data saved to Google Sheets successfully");
+
+          // Since no-cors mode doesn't give us response details,
+          // we'll assume success if no error is thrown
+          console.log("Data sent to Google Sheets");
           savedToGoogleSheets = true;
         } catch (sheetsError) {
           console.error("Google Sheets save error:", sheetsError);
@@ -315,7 +327,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Show appropriate success message based on save status
       if (savedToDatabase && savedToGoogleSheets) {
-        alert("Registration successful! Data saved to both database and Google Sheets.");
+        alert(
+          "Registration successful! Data saved to both database and Google Sheets."
+        );
       } else if (savedToDatabase) {
         alert("Registration successful! Data saved to database only.");
       } else if (savedToGoogleSheets) {
